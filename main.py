@@ -2,7 +2,8 @@
 
 
 #Evidencia N°2: Creacion del menu principal , Opciones de salida y validación basica de opciones de menu.
-
+#Creacion de lista para hacer una lista de diccionario.
+tareas=[]
 
 #Creacion funcion con menu:
 def menu():
@@ -27,17 +28,47 @@ def op():
             print("Debe ingresar numeros.")
 
 
+#Creacion de la funcion Agregar tareas y sus respectivas validaciones 
+def agregarTarea():
+    tareaAgregar=input("Ingrese el nombre de la tarea: ")
+
+    if tareaAgregar.strip() == "":
+        print("Este apartado no puede estar vacio y no puede estar en blanco.")
+        return tareaAgregar
+    
+    nuevaTarea={
+        "Tarea":tareaAgregar
+    }
+
+    tareas.append(nuevaTarea)
+    print("tarea agregada con exito")
+
+
+#Creacion de funcion para listar tareas usando ciclo for para recorrer el diccionario y mostrar la tarea listada.
+def listarTareas():
+    if len(tareas)==0:
+        print("No hay tareas registradas")
+        return
+    
+    for tarea in tareas:
+        print("Tarea:",tarea["Tarea"])
+        print("tarea listada.")
+        print("==================================")
+
+
+
+
 
 
 #Main- Programa principal
 while True:
     menu()
     opcion =op()
-
+#Agrege las funciones hechas en las opciones.
     if opcion==1:
-        pass
+        agregarTarea()
     elif opcion==2:
-        pass
+        listarTareas()
     elif opcion ==3:
         print("¡Gracias por usar el programa!.")
         print("Saliendo........")
