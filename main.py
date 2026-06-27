@@ -13,7 +13,8 @@ def menu():
     print("2.-: Listar Tareas")
     print("3.-: Marcar tareas como completadas")
     print("4.-: Actualizar Tareas")
-    print("5.-: Salir")
+    print("5.-: Eliminar Tarea")
+    print("6.-: Salir")
 
 # Función que solicita ingresar opcion  y valida la opción ingresada:
 def op():
@@ -23,7 +24,7 @@ def op():
 
             if op <1:
                 print("Debe ingresar un numero entero.")
-            elif op <1 or op >5:
+            elif op <1 or op >6:
                 print("Debe escoger una opcion que este entre 1 a 3.")
             else:
                 return op
@@ -97,9 +98,22 @@ def actualizarEstado():
 
 
 
+#Creacion de funcion para eliminar Tarea con su respectiva validacion
+def eliminarTarea():
+    if len(tareas)==0:
+       print("No hay tareas registradas")
+       return
+    tareaEliminar=input("Ingrese tarea a eliminar.")
+   
+    for tarea in tareas:
+       
+       if tareaEliminar == tarea["Tarea"]:
+           tareas.remove(tarea)
 
-
-
+           print("Tarea eliminada exitosamente")
+           return
+    
+    print("La tarea no existe")
 
 
 
@@ -111,6 +125,7 @@ while True:
     opcion =op()
 #Agregue las funciones hechas en las opciones.
 #Agregue dos nuevas opciones en el main que son la de completarTarea y la de actualizarEstado
+#Agregue nueva opcion para eliminar la tarea
     if opcion==1:
         agregarTarea()
     elif opcion==2:
@@ -120,7 +135,10 @@ while True:
     elif opcion ==4:
         actualizarEstado()
     elif opcion==5:
+        eliminarTarea()
+    elif opcion ==6:
         print("¡Gracias por usar el programa!.")
         print("Saliendo........")
         break 
        
+        
