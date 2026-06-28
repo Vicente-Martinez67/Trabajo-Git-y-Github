@@ -25,7 +25,7 @@ def op():
             if op <1:
                 print("Debe ingresar un numero entero.")
             elif op <1 or op >6:
-                print("Debe escoger una opcion que este entre 1 a 3.")
+                print("Debe escoger una opcion que este entre 1 a 6.")
             else:
                 return op
         except ValueError:
@@ -38,8 +38,7 @@ def agregarTarea():
 
     if tareaAgregar.strip() == "":
         print("Este apartado no puede estar vacio y no puede estar en blanco.")
-        return tareaAgregar
-    
+        return 
     nuevaTarea={
         "Tarea":tareaAgregar,
         "Estado":"Pendiente"
@@ -53,27 +52,23 @@ def agregarTarea():
 def listarTareas():
     if len(tareas)==0:
         print("No hay tareas registradas")
-        return
+        return 
     
     for tarea in tareas:
-        print("Tarea:",tarea["Tarea"])
-        print("tarea listada.")
-        print("==================================")
-
+        print("Tarea:", tarea["Tarea"])
+        print("Estado:", tarea["Estado"])
+        print("==========================")
 
 
 #Creacion de funcion de completar tarea con su respectiva validacion
 def completarTarea():
     nombreTarea=input("Ingrese el nombre de la tarea a marcar como completada: ")
-    
-    encontrada = False
 
     for tarea in tareas:
         if tarea["Tarea"].lower() == nombreTarea.lower():
-            encontrada = True
-            tarea["Estado"] = "completado"
+            tarea["Estado"] = "completada"
             print("Tarea marcada como completada.")
-            return nombreTarea
+            return 
     print("Tarea no encontrada")
 
 
@@ -88,7 +83,7 @@ def actualizarEstado():
             nuevo_estado = input("Nuevo estado (Pendiente/Completada): ")
 
             if nuevo_estado.lower() in ["pendiente", "completada"]:
-                tarea["Estado"]=nuevo_estado
+                tarea["Estado"]=nuevo_estado.capitalize()
                 print("Estado actualizado")
             else:
                 print("Estado invalido")
@@ -103,11 +98,11 @@ def eliminarTarea():
     if len(tareas)==0:
        print("No hay tareas registradas")
        return
-    tareaEliminar=input("Ingrese tarea a eliminar.")
+    tareaEliminar=input("Ingrese la tarea a eliminar.")
    
     for tarea in tareas:
        
-       if tareaEliminar == tarea["Tarea"]:
+       if tareaEliminar.lower() == tarea["Tarea"].lower():
            tareas.remove(tarea)
 
            print("Tarea eliminada exitosamente")
